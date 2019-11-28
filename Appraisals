@@ -28,6 +28,15 @@ appraise 'rails-5.2' do
   gem 'sqlite3', '< 1.4.0'
 end
 
+appraise 'rails-6.0' do
+  gem 'bootsnap', '~> 1.4'
+  gem 'rails', '6.0.1'
+  gem 'sprockets', '< 4'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'sqlite3'
+end
+
 appraise 'sinatra' do
   gem 'sinatra', '2.0.5'
+  rails, '< 6'
 end
