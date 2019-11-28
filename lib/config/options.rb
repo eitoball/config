@@ -201,6 +201,11 @@ module Config
 
       h.each do |k, v|
         k = k.to_s if !k.respond_to?(:to_sym) && k.respond_to?(:to_s)
+        n = k.to_sym
+        unless s.singleton_class.method_defined?(n)
+          s.define_singleton_method(n) { @table[n] }
+          s.define_singleton_method("#{n}=") { |x| modifiable?[n] = x }
+        end
 
         if v.is_a?(Hash)
           v = v["type"] == "hash" ? v["contents"] : __convert(v)
